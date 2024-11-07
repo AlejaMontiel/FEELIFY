@@ -1,4 +1,6 @@
 streamlit==1.25.0
+tensorflow-cpu==2.11.0  # Usa la versión CPU para evitar problemas de instalación
 opencv-python-headless==4.5.5.64
 pillow
 numpy
+
