@@ -47,9 +47,9 @@ if frame is not None:
 
 # Crear playlists de ejemplo para cada estado de ánimo
 playlists = {
-    "feliz": ["streamlit_app/assets/Canción 1.mp3", "Canción 2"],
-    "triste": ["Canción 3", "Canción 4"],
-    "enojado": ["Canción 5", "Canción 6"]
+    "feliz": ["streamlit_app/assets/Canción 1.mp3", "streamlit_app/assets/Canción 2.mp3"],
+    "triste": ["streamlit_app/assets/Canción 3.mp3", "streamlit_app/assets/Canción 4.mp3"],
+    "enojado": ["streamlit_app/assets/Canción 5.mp3", "streamlit_app/assets/Canción 6.mp3"]
 }
 
 # Función para recomendar playlist
