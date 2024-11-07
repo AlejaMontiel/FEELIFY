@@ -30,7 +30,7 @@ if st.button("Analizar mi estado de ánimo"):
 from tensorflow.keras.models import load_model
 
 # Cargar el modelo (coloca el archivo del modelo en teachable_machine/emotion_model.h5)
-model = load_model("teachable_machine/emotion_model.h5")
+model = load_model("streamlit_app/teachable_machine/emotion_model.h5")
 
 def predict_emotion(frame):
     # Preprocesamiento de la imagen (tamaño, normalización)
