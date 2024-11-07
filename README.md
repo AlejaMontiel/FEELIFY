@@ -25,3 +25,7 @@ Feelify es una app inteligente que utiliza reconocimiento facial y de voz para o
 ## Ejecución
 ```bash
 streamlit run streamlit_app/feelify_app.py
+
+## Simulación de LEDs
+Para simular los LEDs con Wokwi, [abre esta simulación](https://wokwi.com/simulations/tu-enlace).
+
