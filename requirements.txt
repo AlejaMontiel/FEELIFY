@@ -1,6 +1,7 @@
-streamlit==1.25.0
-tensorflow==2.12  # Usa la versión CPU para evitar problemas de instalación
-opencv-python-headless==4.5.5.64
-pillow
+keras
+streamlit
+streamlit-webrtc
 numpy
-
+opencv-python-headless
+Pillow
+tensorflow==2.12
