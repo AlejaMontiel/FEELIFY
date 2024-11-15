@@ -6,17 +6,6 @@ import numpy as np
 from PIL import Image
 from keras.models import load_model
 
-# Agregar imagen de fondo
-st.markdown("""
-    <style>
-        body {
-            background-image: url('fondo.png');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 def on_publish(client, userdata, result):
     print("El dato ha sido publicado\n")
     pass
@@ -35,6 +24,7 @@ st.subheader("No solo escucha música, sientela.")
 
 with st.sidebar:
     st.subheader("¿Como funciona FEELIFY?")
+    st.write("1. Haz clic en 'Escuchar' para iniciar la grabacion.")
     st.write("1. Haz clic en 'Escuchar' para iniciar la grabacion.")
 
 broker = "broker.hivemq.com"
@@ -144,6 +134,4 @@ if img_file_buffer is not None:
     """,
     height=352,
 )
-
-
 
