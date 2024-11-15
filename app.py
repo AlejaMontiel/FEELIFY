@@ -6,6 +6,17 @@ import numpy as np
 from PIL import Image
 from keras.models import load_model
 
+# Agregar imagen de fondo
+st.markdown("""
+    <style>
+        body {
+            background-image: url('fondo.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 def on_publish(client, userdata, result):
     print("El dato ha sido publicado\n")
     pass
@@ -133,5 +144,6 @@ if img_file_buffer is not None:
     """,
     height=352,
 )
+
 
 
