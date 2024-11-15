@@ -42,7 +42,7 @@ st.markdown("""
 st.markdown('<div class="menu-container">', unsafe_allow_html=True)
 
 # Espacio para la imagen PNG (ajusta el nombre del archivo y la ruta)
-st.markdown('<img src="ruta/a/tu/imagen.png" alt="Logo">', unsafe_allow_html=True)
+st.markdown('<img src="FEELIFY.BANNER.png" alt="Logo">', unsafe_allow_html=True)
 
 # Opciones del menú
 st.markdown("""
