@@ -16,69 +16,16 @@ def on_message(client, userdata, message):
     message_received = str(message.payload.decode("utf-8"))
     st.write(message_received)
 
-# Añadir CSS para el estilo personalizado
-st.markdown("""
-    <style>
-    /* Fuente y colores principales */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-    body {
-        background-color: #161616;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-    }
-    /* Logo y título */
-    .header-title {
-        font-size: 4em;
-        color: #FFD700;
-        font-weight: bold;
-        text-align: center;
-    }
-    .header-subtitle {
-        font-size: 1.5em;
-        color: #C0C0C0;
-        text-align: center;
-        margin-bottom: 1em;
-    }
-    /* Botón de producto */
-    .stButton>button {
-        background-color: #FF69B4;
-        color: black;
-        border-radius: 12px;
-        border: 1px solid #FFD700;
-        font-weight: bold;
-    }
-    .stButton>button:hover {
-        background-color: #FFD700;
-        color: black;
-    }
-    /* Sidebar */
-    .sidebar .sidebar-content {
-        background-color: #161616;
-        color: white;
-    }
-    /* Centrando elementos */
-    .centered {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# Banner de la aplicación
 image = Image.open('FEELIFY.BANNER.png')
 st.image(image, width=1000)
 
-# Título y subtítulo con clase personalizada
-st.markdown("<div class='header-title'>FEELIFY</div>", unsafe_allow_html=True)
-st.markdown("<div class='header-subtitle'>YOUR MOOD YOUR MUSIC</div>", unsafe_allow_html=True)
+st.title("Match your music with your feelings")
+st.subheader("No solo escucha música, sientela.")
 
-# Sidebar
 with st.sidebar:
-    st.subheader("¿Cómo funciona FEELIFY?")
-    st.write("1. Haz clic en 'Escuchar' para iniciar la grabación.")
+    st.subheader("¿Como funciona FEELIFY?")
+    st.write("1. Haz clic en 'Escuchar' para iniciar la grabacion.")
 
-# Configuración MQTT
 broker = "broker.hivemq.com"
 port = 1883
 client1 = paho.Client("APP_CERR")
@@ -86,11 +33,9 @@ client1.on_message = on_message
 client1.on_publish = on_publish
 client1.connect(broker, port)
 
-# Cargar el modelo de Keras
 model = load_model('keras_model.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-# Captura de imagen con cámara
 img_file_buffer = st.camera_input("¡Hola! Tómate una foto para analizar tu mood actual")
 
 if img_file_buffer is not None:
@@ -103,7 +48,9 @@ if img_file_buffer is not None:
 
     # Ejecuta la predicción
     prediction = model.predict(data)
+    print(prediction)
 
+    # Verificamos que st.session_state tenga un estado anterior registrado
     if "estado_anterior" not in st.session_state:
         st.session_state.estado_anterior = None
     if "respuesta" not in st.session_state:
@@ -145,33 +92,46 @@ if img_file_buffer is not None:
             if st.session_state.estado_anterior == "feliz":
                 st.write("Tengo la canción perfecta para que te sigas sintiendo así de feliz.")
                 st.audio("cancionfeliz.mp3", format="audio/mp3", start_time=0)
-                st.components.v1.html("""
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/61EvHDxTH9tvyCyFwzQLTP?utm_source=generator" 
-                    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                    loading="lazy"></iframe>
-                """, height=352)
+                st.components.v1.html(
+    """
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/61EvHDxTH9tvyCyFwzQLTP?utm_source=generator" 
+    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+    loading="lazy"></iframe>
+    """,
+    height=352,
+)
             elif st.session_state.estado_anterior == "triste":
                 st.audio("canciontriste.mp3", format="audio/mp3", start_time=0)
                 st.write("Tengo la canción perfecta para acompañarte en este momento.")
-                st.components.v1.html("""
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1wBZWxWB0O1?utm_source=generator" 
-                    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                    loading="lazy"></iframe>
-                """, height=352)
+                st.components.v1.html(
+    """
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1wBZWxWB0O1?utm_source=generator" 
+    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+    loading="lazy"></iframe>
+    """,
+    height=352,
+)
             elif st.session_state.estado_anterior == "enojado":
                 st.audio("cancionenojado.mp3", format="audio/mp3", start_time=0)
                 st.write("Tengo la canción perfecta para este momento de enojo.")
-                st.components.v1.html("""
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7iVI3u03k78JvGu8YaOKR2?utm_source=generator" 
-                    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                    loading="lazy"></iframe>
-                """, height=352)
+                st.components.v1.html(
+    """
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7iVI3u03k78JvGu8YaOKR2?utm_source=generator" 
+    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+    loading="lazy"></iframe>
+    """,
+    height=352,
+)
         elif st.session_state.respuesta == "no":
             st.audio("neutro.mp3", format="audio/mp3", start_time=0)
             st.write("Está bien, esta canción podría acompañarte un rato")
-            st.components.v1.html("""
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EVHGWrwldPRtj?utm_source=generator" 
-                width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"></iframe>
-            """, height=352)
+            st.components.v1.html(
+    """
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EVHGWrwldPRtj?utm_source=generator" 
+    width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+    loading="lazy"></iframe>
+    """,
+    height=352,
+)
+
 
