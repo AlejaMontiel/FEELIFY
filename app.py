@@ -24,8 +24,10 @@ st.subheader("No solo escucha música, sientela.")
 
 with st.sidebar:
     st.subheader("¿Como funciona FEELIFY?")
-    st.write("1. Haz clic en 'Escuchar' para iniciar la grabacion.")
-    st.write("1. Haz clic en 'Escuchar' para iniciar la grabacion.")
+    st.write("1. Haz clic en 'Tomar Foto' para analizar tu estado de ánimo.")
+    st.write("2. Haz clic en 'Escuchar' para saber tu resultado.")
+    st.write("3. Haz clic en 'Si / No' para confirmar tu resultado.")
+    st.write("4. Disfruta de tu Playlist Perfecta.")
 
 broker = "broker.hivemq.com"
 port = 1883
