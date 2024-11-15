@@ -24,10 +24,7 @@ st.subheader("No solo escucha música, sientela.")
 
 with st.sidebar:
     st.subheader("¿Como funciona FEELIFY?")
-    st.write("1. Haz clic en 'Tomar Foto' para analizar tu estado de ánimo.")
-    st.write("2. Haz clic en 'Escuchar' para saber tu resultado.")
-    st.write("3. Haz clic en 'Si / No' para confirmar tu resultado.")
-    st.write("4. Disfruta de tu Playlist Perfecta.")
+    st.write("1. Haz clic en 'Escuchar' para iniciar la grabacion.")
 
 broker = "broker.hivemq.com"
 port = 1883
@@ -66,14 +63,6 @@ if img_file_buffer is not None:
         client1.publish("misabela", "{'gesto': 'feliz'}", qos=0, retain=False)
         st.session_state.estado_anterior = "feliz"
         st.session_state.respuesta = None
-        # Cambiar el color de fondo a verde (feliz)
-        st.markdown("""
-        <style>
-        body {
-            background-color: #00FF00;
-        }
-        </style>
-        """, unsafe_allow_html=True)
 
     elif prediction[0][1] > 0.3 and st.session_state.estado_anterior != "triste":
         st.header("Veo que te sientes triste")
@@ -81,14 +70,6 @@ if img_file_buffer is not None:
         client1.publish("misabela", "{'gesto': 'triste'}", qos=0, retain=False)
         st.session_state.estado_anterior = "triste"
         st.session_state.respuesta = None
-        # Cambiar el color de fondo a azul (triste)
-        st.markdown("""
-        <style>
-        body {
-            background-color: #0000FF;
-        }
-        </style>
-        """, unsafe_allow_html=True)
 
     elif prediction[0][2] > 0.3 and st.session_state.estado_anterior != "enojado":
         st.header("Veo que te sientes enojada")
@@ -96,14 +77,6 @@ if img_file_buffer is not None:
         client1.publish("misabela", "{'gesto': 'enojado'}", qos=0, retain=False)
         st.session_state.estado_anterior = "enojado"
         st.session_state.respuesta = None
-        # Cambiar el color de fondo a rojo (enojado)
-        st.markdown("""
-        <style>
-        body {
-            background-color: #FF0000;
-        }
-        </style>
-        """, unsafe_allow_html=True)
 
     # Mostrar botones de respuesta después de la emoción detectada
     if st.session_state.estado_anterior in ["feliz", "triste", "enojado"]:
