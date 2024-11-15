@@ -16,6 +16,51 @@ def on_message(client, userdata, message):
     message_received = str(message.payload.decode("utf-8"))
     st.write(message_received)
 
+import streamlit as st
+
+# Configuración de la página (opcional)
+st.set_page_config(page_title="Tu Aplicación", page_icon="🌟")
+
+# Crear un contenedor para el menú superior
+st.markdown("""
+    <style>
+        .menu-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+        .menu-container img {
+            max-height: 50px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Menu superior con imagen y enlaces
+st.markdown('<div class="menu-container">', unsafe_allow_html=True)
+
+# Espacio para la imagen PNG (ajusta el nombre del archivo y la ruta)
+st.markdown('<img src="ruta/a/tu/imagen.png" alt="Logo">', unsafe_allow_html=True)
+
+# Opciones del menú
+st.markdown("""
+    <div style="display: flex; gap: 15px;">
+        <a href="#home" style="text-decoration: none; color: black; font-weight: bold;">Home</a>
+        <a href="#about" style="text-decoration: none; color: black; font-weight: bold;">About</a>
+        <a href="#contact" style="text-decoration: none; color: black; font-weight: bold;">Contact</a>
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Agregar contenido después del menú
+st.title("Contenido de tu Aplicación")
+st.write("Aquí empieza el contenido de tu aplicación en Streamlit.")
+
+
+
 image = Image.open('FEELIFY.BANNER.png')
 st.image(image, width=1000)
 
