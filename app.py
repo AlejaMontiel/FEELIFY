@@ -19,8 +19,8 @@ def on_message(client, userdata, message):
 image = Image.open('FEELIFY.BANNER.png')
 st.image(image, width=1000)
 
-st.markdown("<h1 style='text-align: center;'>Match your music with your feelings</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center; color: gray;'>No solo escucha música, siéntela.</h3>", unsafe_allow_html=True)
+st.title("            Match your music with your feelings")
+st.subheader("No solo escucha música, sientela.")
 
 with st.sidebar:
     st.subheader("¿Como funciona FEELIFY?")
