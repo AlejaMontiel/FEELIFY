@@ -66,6 +66,14 @@ if img_file_buffer is not None:
         client1.publish("misabela", "{'gesto': 'feliz'}", qos=0, retain=False)
         st.session_state.estado_anterior = "feliz"
         st.session_state.respuesta = None
+        # Cambiar el color de fondo a verde (feliz)
+        st.markdown("""
+        <style>
+        body {
+            background-color: #00FF00;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     elif prediction[0][1] > 0.3 and st.session_state.estado_anterior != "triste":
         st.header("Veo que te sientes triste")
@@ -73,6 +81,14 @@ if img_file_buffer is not None:
         client1.publish("misabela", "{'gesto': 'triste'}", qos=0, retain=False)
         st.session_state.estado_anterior = "triste"
         st.session_state.respuesta = None
+        # Cambiar el color de fondo a azul (triste)
+        st.markdown("""
+        <style>
+        body {
+            background-color: #0000FF;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     elif prediction[0][2] > 0.3 and st.session_state.estado_anterior != "enojado":
         st.header("Veo que te sientes enojada")
@@ -80,6 +96,14 @@ if img_file_buffer is not None:
         client1.publish("misabela", "{'gesto': 'enojado'}", qos=0, retain=False)
         st.session_state.estado_anterior = "enojado"
         st.session_state.respuesta = None
+        # Cambiar el color de fondo a rojo (enojado)
+        st.markdown("""
+        <style>
+        body {
+            background-color: #FF0000;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     # Mostrar botones de respuesta después de la emoción detectada
     if st.session_state.estado_anterior in ["feliz", "triste", "enojado"]:
@@ -136,4 +160,3 @@ if img_file_buffer is not None:
     """,
     height=352,
 )
-
