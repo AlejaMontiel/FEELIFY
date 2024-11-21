@@ -71,7 +71,7 @@ with st.sidebar:
     st.write("4️⃣ ¡Disfruta tu Playlist Perfecta! 🎉🎶")
 
 # Configurar MQTT
-broker = "broker.hivemq.com"
+broker = "157.230.214.127"
 port = 1883
 client1 = paho.Client("APP_CERR")
 client1.on_message = on_message
